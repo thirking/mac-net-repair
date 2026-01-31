@@ -73,6 +73,88 @@ pub fn get_proxy_settings(service_name: String) -> Result<ProxySettings, String>
 }
 
 #[tauri::command]
+pub fn set_http_proxy(
+    service_name: String,
+    enabled: bool,
+    server: String,
+    port: u16,
+) -> Result<String, String> {
+    if enabled {
+        Command::new("networksetup")
+            .args([
+                "-setwebproxy",
+                &service_name,
+                &server,
+                &port.to_string(),
+            ])
+            .output()
+            .map_err(|e| format!("Failed to set HTTP proxy: {}", e))?;
+    } else {
+        Command::new("networksetup")
+            .args(["-setwebproxystate", &service_name, "off"])
+            .output()
+            .map_err(|e| format!("Failed to disable HTTP proxy: {}", e))?;
+    }
+
+    Ok(format!("HTTP proxy updated for {}", service_name))
+}
+
+#[tauri::command]
+pub fn set_https_proxy(
+    service_name: String,
+    enabled: bool,
+    server: String,
+    port: u16,
+) -> Result<String, String> {
+    if enabled {
+        Command::new("networksetup")
+            .args([
+                "-setsecurewebproxy",
+                &service_name,
+                &server,
+                &port.to_string(),
+            ])
+            .output()
+            .map_err(|e| format!("Failed to set HTTPS proxy: {}", e))?;
+    } else {
+        Command::new("networksetup")
+            .args(["-setsecurewebproxystate", &service_name, "off"])
+            .output()
+            .map_err(|e| format!("Failed to disable HTTPS proxy: {}", e))?;
+    }
+
+    Ok(format!("HTTPS proxy updated for {}", service_name))
+}
+
+#[tauri::command]
+pub fn set_socks_proxy(
+    service_name: String,
+    enabled: bool,
+    server: String,
+    port: u16,
+) -> Result<String, String> {
+    if enabled {
+        Command::new("networksetup")
+            .args([
+                "-setsocksfirewallproxy",
+                &service_name,
+                &server,
+                &port.to_string(),
+            ])
+            .output()
+            .map_err(|e| format!("Failed to set SOCKS proxy: {}", e))?;
+    } else {
+        Command::new("networksetup")
+            .args(["-setsocksfirewallproxystate", &service_name, "off"])
+            .output()
+            .map_err(|e| format!("Failed to disable SOCKS proxy: {}", e))?;
+    }
+
+    Ok(format!("SOCKS proxy updated for {}", service_name))
+}
+
+
+#[tauri::command]
 pub fn clear_all_proxies(service_name: String) -> Result<String, String> {
     // Disable HTTP proxy
     Command::new("networksetup")

@@ -7,7 +7,7 @@ use commands::{
         create_network_service, get_available_hardware_ports, get_network_services,
         get_service_order, remove_network_service, set_service_order,
     },
-    proxy::{clear_all_proxies, get_proxy_settings},
+    proxy::{clear_all_proxies, get_proxy_settings, set_http_proxy, set_https_proxy, set_socks_proxy},
 };
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
@@ -23,6 +23,9 @@ pub fn run() {
             create_network_service,
             remove_network_service,
             get_proxy_settings,
+            set_http_proxy,
+            set_https_proxy,
+            set_socks_proxy,
             clear_all_proxies,
             get_dns_servers,
             set_dns_servers,
