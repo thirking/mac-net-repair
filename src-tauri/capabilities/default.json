@@ -6,7 +6,18 @@
   "permissions": [
     "core:default",
     "opener:default",
+    "os:default",
     "shell:allow-open",
-    "shell:allow-execute"
+    "shell:allow-execute",
+    "core:window:allow-close",
+    "core:window:allow-center",
+    "core:window:allow-minimize",
+    "core:window:allow-maximize",
+    "core:window:allow-set-size",
+    "core:window:allow-set-focus",
+    "core:window:allow-is-maximized",
+    "core:window:allow-start-dragging",
+    "core:window:allow-toggle-maximize",
+    "decorum:allow-show-snap-overlay"
   ]
 }
