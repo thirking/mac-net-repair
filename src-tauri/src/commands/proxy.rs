@@ -81,12 +81,7 @@ pub fn set_http_proxy(
 ) -> Result<String, String> {
     if enabled {
         Command::new("networksetup")
-            .args([
-                "-setwebproxy",
-                &service_name,
-                &server,
-                &port.to_string(),
-            ])
+            .args(["-setwebproxy", &service_name, &server, &port.to_string()])
             .output()
             .map_err(|e| format!("Failed to set HTTP proxy: {}", e))?;
     } else {
@@ -152,7 +147,6 @@ pub fn set_socks_proxy(
 
     Ok(format!("SOCKS proxy updated for {}", service_name))
 }
-
 
 #[tauri::command]
 pub fn clear_all_proxies(service_name: String) -> Result<String, String> {

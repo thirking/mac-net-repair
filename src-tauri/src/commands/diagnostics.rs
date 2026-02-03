@@ -66,10 +66,7 @@ pub fn reset_network() -> Result<String, String> {
     let mut results = Vec::new();
 
     // 1. Flush DNS cache
-    if let Ok(_) = Command::new("dscacheutil")
-        .arg("-flushcache")
-        .output()
-    {
+    if let Ok(_) = Command::new("dscacheutil").arg("-flushcache").output() {
         results.push("DNS cache flushed");
     }
 
@@ -82,11 +79,7 @@ pub fn reset_network() -> Result<String, String> {
     }
 
     // 3. Flush ARP cache
-    if let Ok(_) = Command::new("arp")
-        .arg("-d")
-        .arg("-a")
-        .output()
-    {
+    if let Ok(_) = Command::new("arp").arg("-d").arg("-a").output() {
         results.push("ARP cache cleared");
     }
 
@@ -111,7 +104,8 @@ pub fn reset_network() -> Result<String, String> {
 
                         for svc_line in services_str.lines() {
                             if svc_line.starts_with("Hardware Port:") {
-                                current_port = svc_line.replace("Hardware Port: ", "").trim().to_string();
+                                current_port =
+                                    svc_line.replace("Hardware Port: ", "").trim().to_string();
                             } else if svc_line.starts_with("Device:") {
                                 let device = svc_line.replace("Device: ", "").trim().to_string();
                                 if device == iface && !current_port.is_empty() {

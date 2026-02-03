@@ -50,7 +50,10 @@ pub fn set_dns_servers(service_name: String, servers: Vec<String>) -> Result<Str
         if servers.is_empty() {
             Ok(format!("DNS servers cleared for {}", service_name))
         } else {
-            Ok(format!("DNS servers set to {:?} for {}", servers, service_name))
+            Ok(format!(
+                "DNS servers set to {:?} for {}",
+                servers, service_name
+            ))
         }
     } else {
         let stderr = String::from_utf8_lossy(&output.stderr);

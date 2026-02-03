@@ -43,9 +43,7 @@ fn run_with_admin_privileges(command: &str) -> Result<String, String> {
     // Prepend cd /tmp to avoid working directory permission issues
     // Escape the command for AppleScript
     let full_command = format!("cd /tmp && {}", command);
-    let escaped_command = full_command
-        .replace("\\", "\\\\")
-        .replace("\"", "\\\"");
+    let escaped_command = full_command.replace("\\", "\\\\").replace("\"", "\\\"");
 
     // Create AppleScript that writes result to a file
     let script_content = format!(
