@@ -150,13 +150,6 @@ export function NetworkCardsPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">网卡管理</h1>
-        <p className="text-[var(--color-muted-foreground)]">
-          查看和管理网络接口及服务优先级
-        </p>
-      </div>
-
       {error && (
         <div className="p-4 border border-[var(--color-destructive)] bg-[var(--color-destructive)]/10 rounded-lg">
           <p className="text-sm text-[var(--color-destructive)]">{error}</p>

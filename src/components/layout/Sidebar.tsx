@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   Network,
@@ -9,7 +8,6 @@ import {
   Home,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { isMacOS } from "@/utils/platform";
 
 const navItems = [
   { to: "/", icon: Home, label: "首页" },
@@ -21,22 +19,13 @@ const navItems = [
 ];
 
 export function Sidebar() {
-  const [isMac, setIsMac] = useState(false);
-
-  useEffect(() => {
-    isMacOS().then(setIsMac);
-  }, []);
-
   return (
     <aside className="w-56 border-r border-[var(--color-border)] bg-[var(--color-card)] h-screen sticky top-0">
       {/* 标题栏区域 - 可见且可拖拽 */}
-      <div
-        data-tauri-drag-region
-        className={`h-14 flex items-center justify-center border-b border-[var(--color-border)] bg-[var(--color-muted)] ${isMac ? "pt-6" : ""}`}
-      >
+      <div data-tauri-drag-region className="flex items-center pt-10 pb-3">
         <h1
           data-tauri-drag-region
-          className="text-lg font-semibold select-none"
+          className="text-lg font-semibold select-none text-center w-full"
         >
           Mac 网络修复
         </h1>

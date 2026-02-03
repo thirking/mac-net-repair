@@ -135,13 +135,6 @@ export function ProxyPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">代理管理</h1>
-        <p className="text-[var(--color-muted-foreground)]">
-          检测和管理系统代理设置 ({settings?.service_name || "未知网络服务"})
-        </p>
-      </div>
-
       {notification && (
         <Alert variant={notification.type === 'success' ? "default" : "destructive"}>
           <AlertCircle className="h-4 w-4" />

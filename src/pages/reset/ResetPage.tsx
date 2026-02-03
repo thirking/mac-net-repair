@@ -11,13 +11,6 @@ import { RefreshCw, AlertTriangle } from "lucide-react";
 export function ResetPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">网络重置</h1>
-        <p className="text-[var(--color-muted-foreground)]">
-          一键重置网络配置，修复常见网络问题
-        </p>
-      </div>
-
       <div className="grid gap-4">
         <Card className="border-yellow-500/50">
           <CardHeader>

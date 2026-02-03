@@ -249,13 +249,6 @@ export function DnsPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">DNS 管理</h1>
-        <p className="text-[var(--color-muted-foreground)]">
-          查看和配置 DNS 服务器设置
-        </p>
-      </div>
-
       {notification && (
         <Alert variant={notification.type === "success" ? "default" : "destructive"}>
           <AlertCircle className="h-4 w-4" />

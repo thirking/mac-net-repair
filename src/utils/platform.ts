@@ -10,5 +10,5 @@ export async function isMacOS(): Promise<boolean> {
 }
 
 export function getTrafficLightSafeAreaClasses(isMac: boolean): string {
-  return isMac ? "pt-6 pl-[88px]" : "pt-6";
+  return isMac ? "pt-6" : "pt-6";
 }

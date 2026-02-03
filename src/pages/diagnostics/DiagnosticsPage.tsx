@@ -12,13 +12,6 @@ import { Activity, Play, Clock, Search } from "lucide-react";
 export function DiagnosticsPage() {
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold tracking-tight">网络诊断</h1>
-        <p className="text-[var(--color-muted-foreground)]">
-          测试网络连通性和 DNS 解析
-        </p>
-      </div>
-
       <div className="grid gap-4">
         <Card>
           <CardHeader>
