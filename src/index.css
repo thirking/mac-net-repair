@@ -32,3 +32,10 @@
         color: var(--color-foreground);
     }
 }
+
+/* Tauri drag region for Overlay title bar */
+[data-tauri-drag-region] {
+    -webkit-app-region: drag;
+    user-select: none;
+    cursor: default;
+}

@@ -1,6 +1,15 @@
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Network, Shield, Globe, Activity, RefreshCw, Home } from "lucide-react";
+import {
+  Network,
+  Shield,
+  Globe,
+  Activity,
+  RefreshCw,
+  Home,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
+import { isMacOS } from "@/utils/platform";
 
 const navItems = [
   { to: "/", icon: Home, label: "首页" },
@@ -12,10 +21,25 @@ const navItems = [
 ];
 
 export function Sidebar() {
+  const [isMac, setIsMac] = useState(false);
+
+  useEffect(() => {
+    isMacOS().then(setIsMac);
+  }, []);
+
   return (
     <aside className="w-56 border-r border-[var(--color-border)] bg-[var(--color-card)] h-screen sticky top-0">
-      <div className="p-4 border-b border-[var(--color-border)]">
-        <h1 className="text-lg font-semibold">Mac 网络修复</h1>
+      {/* 标题栏区域 - 可见且可拖拽 */}
+      <div
+        data-tauri-drag-region
+        className={`h-14 flex items-center justify-center border-b border-[var(--color-border)] bg-[var(--color-muted)] ${isMac ? "pt-6" : ""}`}
+      >
+        <h1
+          data-tauri-drag-region
+          className="text-lg font-semibold select-none"
+        >
+          Mac 网络修复
+        </h1>
       </div>
       <nav className="p-2">
         <ul className="space-y-1">
@@ -28,7 +52,7 @@ export function Sidebar() {
                     "flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-colors",
                     isActive
                       ? "bg-[var(--color-accent)] text-[var(--color-accent-foreground)]"
-                      : "text-[var(--color-muted-foreground)] hover:bg-[var(--color-accent)] hover:text-[var(--color-accent-foreground)]"
+                      : "text-[var(--color-muted-foreground)] hover:bg-[var(--color-accent)] hover:text-[var(--color-accent-foreground)]",
                   )
                 }
               >
